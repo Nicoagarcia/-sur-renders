@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Material fuente del cliente (renders originales) y capturas de referencia
+drive-download-*/
+/undefined/

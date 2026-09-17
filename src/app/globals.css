@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ *
+ *  Design tokens — Visualización Arquitectónica 3D
+ *  Estética: minimalista, cálida, elegante.
+ *  Crema/beige · verdes desaturados (sage) · evitando el blanco puro.
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Superficies */
+  --color-cream: #f3efe6; /* fondo base de página */
+  --color-sand: #e9e2d4; /* sección alternada */
+  --color-paper: #fbf9f3; /* tarjetas / off-white (nunca blanco puro) */
+
+  /* Tinta y texto */
+  --color-ink: #272a22; /* casi-negro cálido verdoso */
+  --color-stone: #6c6e60; /* texto secundario / mutado */
+
+  /* Acentos verdes desaturados */
+  --color-sage: #8b9479; /* sage claro */
+  --color-sage-deep: #565f49; /* sage profundo */
+
+  /* Líneas */
+  --color-line: #d9d2c2;
+
+  /* Tipografía */
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-inter);
+
+  /* Easing */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  border-color: var(--color-line);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Compensar el header sticky al saltar a anclas */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Utilidades de estilo */
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.tracking-widest-xl {
+  letter-spacing: 0.28em;
+}
+
+/* Aparición suave al hacer scroll */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.is-visible {
+  animation: reveal-up 0.9s var(--ease-soft) forwards;
+}
+
+/* Entrada escalonada del hero (al cargar la página) */
+.anim-rise {
+  opacity: 0;
+  animation: reveal-up 0.95s var(--ease-soft) both;
+}
+
+/* Zoom cinematográfico lento del render de fondo */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero-zoom {
+  animation: hero-zoom 1.8s var(--ease-soft) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .anim-rise {
+    opacity: 1;
+    animation: none;
+  }
+  .hero-zoom {
+    animation: none;
+  }
+}
+
+/* Scrollbar discreta dentro de galerías */
+.gallery-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 99px;
 }
