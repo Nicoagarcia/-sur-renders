@@ -36,7 +36,7 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. Todos los derechos
             reservados.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6">
             <a
               href={siteConfig.contact.instagramUrl}
               target="_blank"
@@ -45,8 +45,30 @@ export function Footer() {
             >
               Instagram
             </a>
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              className="transition-colors hover:text-paper"
+            >
+              {siteConfig.contact.email}
+            </a>
           </div>
         </div>
+        {/* Crédito del sitio: chico y discreto */}
+        <p className="mt-6 text-[10px] tracking-wide text-paper/30">
+          Sitio por{" "}
+          {siteConfig.credits.url ? (
+            <a
+              href={siteConfig.credits.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-paper/60"
+            >
+              {siteConfig.credits.name}
+            </a>
+          ) : (
+            siteConfig.credits.name
+          )}
+        </p>
       </div>
     </footer>
   );

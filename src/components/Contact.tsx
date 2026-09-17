@@ -69,6 +69,17 @@ ${form.email ? `\nMi email: ${form.email}` : ""}`;
                 @{siteConfig.contact.instagram}
               </span>
             </a>
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              className="group flex items-center gap-4 border-b border-paper/20 pb-4"
+            >
+              <span className="text-xs uppercase tracking-widest text-paper/50">
+                Email
+              </span>
+              <span className="ml-auto break-all text-right text-paper/90 transition-colors group-hover:text-paper">
+                {siteConfig.contact.email}
+              </span>
+            </a>
           </div>
         </Reveal>
 

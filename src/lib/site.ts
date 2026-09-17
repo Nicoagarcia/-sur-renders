@@ -11,14 +11,17 @@ export const siteConfig = {
   description:
     "Estudio de visualización arquitectónica 3D en Viedma, Río Negro. Renders fotorrealistas, recorridos virtuales y presentación profesional de proyectos antes de construir.",
 
-  // Contacto. El estudio no usa email: los canales son WhatsApp e Instagram.
+  // Contacto
   contact: {
     // Número en formato internacional sin signos, para el link de WhatsApp.
     whatsapp: "5492920487784",
     whatsappLabel: "+54 9 2920 48-7784",
+    email: "jesuspachecovasquez@gmail.com",
     instagram: "sur_renders",
     instagramUrl: "https://www.instagram.com/sur_renders",
   },
+  /** Crédito discreto al pie: quién hizo el sitio. */
+  credits: { name: "Vesur", url: "" },
 } as const;
 
 /** Años de trayectoria, calculados desde `since` (mínimo 1). */
