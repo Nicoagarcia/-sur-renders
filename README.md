@@ -1,4 +1,4 @@
-# Sur render 
+# Sur Renders
 
 Sitio web portfolio para un estudio de visualización arquitectónica 3D.
 Construido con **Next.js 16 (App Router)**, **React 19**, **TypeScript** y **Tailwind CSS v4**.
