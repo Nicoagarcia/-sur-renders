@@ -17,8 +17,8 @@ export const siteConfig = {
     whatsapp: "5492920487784",
     whatsappLabel: "+54 9 2920 48-7784",
     email: "jesuspachecovasquez@gmail.com",
-    instagram: "sur_renders",
-    instagramUrl: "https://www.instagram.com/sur_renders",
+    instagram: "jpv.arq",
+    instagramUrl: "https://www.instagram.com/jpv.arq/",
   },
   /** Crédito discreto al pie: quién hizo el sitio. */
   credits: { name: "Vesur", url: "" },

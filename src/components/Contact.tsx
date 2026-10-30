@@ -66,7 +66,7 @@ ${form.email ? `\nMi email: ${form.email}` : ""}`;
                 Instagram
               </span>
               <span className="ml-auto text-paper/90 transition-colors group-hover:text-paper">
-                Ver perfil
+                @{siteConfig.contact.instagram}
               </span>
             </a>
             <a
