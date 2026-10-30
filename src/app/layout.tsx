@@ -20,11 +20,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} · Visualización Arquitectónica 3D`,
+    default: `${siteConfig.name} · ${siteConfig.tagline}`,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
+    "estudio de arquitectura",
+    "arquitecto Viedma",
+    "dirección de obra",
     "visualización arquitectónica",
     "renders 3D",
     "render arquitectónico",
@@ -35,15 +38,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_AR",
-    title: `${siteConfig.name} · Visualización Arquitectónica 3D`,
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
       {
-        url: "/proyectos/arenas-verdes-ii/01.jpg",
-        width: 1920,
-        height: 1080,
-        alt: "Arenas Verdes II — fachada al atardecer",
+        url: "/hero/01.jpg",
+        width: 1672,
+        height: 941,
+        alt: "Fachada de vivienda con cochera",
       },
     ],
   },

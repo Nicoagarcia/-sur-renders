@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   categoryLabel,
   imageCount,
@@ -8,6 +8,7 @@ import {
   type Project,
 } from "@/lib/projects";
 import { RenderFrame } from "./RenderFrame";
+import { ImageViewer } from "./ImageViewer";
 import { siteConfig, whatsappLink } from "@/lib/site";
 
 export function ProjectModal({
@@ -17,6 +18,9 @@ export function ProjectModal({
   project: Project | null;
   onClose: () => void;
 }) {
+  // Render abierto en el visor a pantalla completa (null = cerrado).
+  const [viewing, setViewing] = useState<number | null>(null);
+
   useEffect(() => {
     if (!project) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -113,17 +117,28 @@ export function ProjectModal({
                   key={img.src}
                   className={wide ? "sm:col-span-2" : undefined}
                 >
-                  <RenderFrame
-                    src={img.src}
-                    alt={`${project.title} — ${img.alt}`}
-                    sizes={
-                      wide
-                        ? "(max-width: 1024px) 100vw, 1024px"
-                        : "(max-width: 640px) 100vw, 512px"
-                    }
-                    quality={85}
-                    className={`w-full ${img.square ? "aspect-square" : "aspect-video"}`}
-                  />
+                  <button
+                    onClick={() => setViewing(i)}
+                    aria-label={`Ingresar a la foto: ${img.alt}`}
+                    className="group relative block w-full cursor-zoom-in"
+                  >
+                    <RenderFrame
+                      src={img.src}
+                      alt={`${project.title} — ${img.alt}`}
+                      sizes={
+                        wide
+                          ? "(max-width: 1024px) 100vw, 1024px"
+                          : "(max-width: 640px) 100vw, 512px"
+                      }
+                      quality={85}
+                      className={`w-full ${img.square ? "aspect-square" : "aspect-video"}`}
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center bg-ink/0 transition-colors duration-300 group-hover:bg-ink/25">
+                      <span className="translate-y-1 border border-paper/60 bg-ink/40 px-4 py-2 text-[11px] uppercase tracking-widest text-paper opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:opacity-100">
+                        Ingresar a la foto
+                      </span>
+                    </span>
+                  </button>
                   <figcaption className="mt-2 flex items-baseline justify-between text-xs text-stone">
                     <span>{img.alt}</span>
                     <span className="text-[10px]">
@@ -153,6 +168,16 @@ export function ProjectModal({
           </div>
         </div>
       </div>
+
+      {viewing !== null && (
+        <ImageViewer
+          images={project.images}
+          title={project.title}
+          index={viewing}
+          onIndex={setViewing}
+          onClose={() => setViewing(null)}
+        />
+      )}
     </div>
   );
 }

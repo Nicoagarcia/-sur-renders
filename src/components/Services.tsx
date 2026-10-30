@@ -1,29 +1,42 @@
 import { Reveal } from "./Reveal";
 
+// En el orden que pidió el estudio.
 const items = [
   {
-    title: "Renders interiores",
-    text: "Atmósferas cálidas y realistas que muestran cómo se vive cada ambiente.",
+    title: "Proyectos de Arquitectura",
+    text: "Diseño integral de viviendas, edificios y espacios, desde la idea hasta el proyecto ejecutivo.",
   },
   {
-    title: "Renders exteriores",
-    text: "Fachadas y entornos con estudio de luz natural en distintos momentos del día.",
+    title: "Dirección de obra",
+    text: "Seguimiento técnico en obra para que lo construido respete lo proyectado.",
   },
   {
-    title: "Imágenes fotorrealistas",
-    text: "Calidad fotográfica: materiales, texturas y detalles fieles al proyecto.",
+    title: "Documentación Técnica",
+    text: "Planos, detalles y legajos completos para presentar, cotizar y construir.",
   },
   {
-    title: "Recorridos virtuales",
-    text: "Navegación inmersiva por el proyecto para experimentarlo antes de construir.",
+    title: "Reformas y Ampliaciones",
+    text: "Intervenciones sobre espacios existentes para adaptarlos a nuevas necesidades.",
   },
   {
-    title: "Presentaciones de proyecto",
-    text: "Material visual listo para clientes, ventas en pozo o concursos.",
+    title: "Relevamientos",
+    text: "Medición y registro de inmuebles existentes como base para cualquier proyecto o trámite.",
   },
   {
-    title: "Vistas aéreas y de implantación",
-    text: "Comprensión del proyecto en su contexto urbano o natural.",
+    title: "Gestorías Administrativas",
+    text: "Trámites municipales y de colegio profesional: permisos, aprobaciones y finales de obra.",
+  },
+  {
+    title: "Visualización 3D",
+    text: "Modelado tridimensional para comprender y decidir el proyecto antes de construirlo.",
+  },
+  {
+    title: "Renders Interiores y Exteriores",
+    text: "Imágenes fotorrealistas con estudio de luz, materiales y atmósfera de cada espacio.",
+  },
+  {
+    title: "Recorridos Virtuales",
+    text: "Navegación inmersiva por el proyecto para experimentarlo antes de la obra.",
   },
 ];
 
@@ -37,14 +50,14 @@ export function Services() {
               Servicios
             </p>
             <h2 className="font-display text-4xl font-light leading-[1.05] text-ink sm:text-5xl">
-              Un vocabulario
+              Del proyecto
               <br />
-              visual completo.
+              a la imagen.
             </h2>
             <p className="mt-7 max-w-xs text-[15px] leading-relaxed text-stone">
-              Representamos proyectos con un alto nivel de realismo antes de su
-              construcción —para comunicar ideas, decidir con claridad y
-              presentar cada trabajo con altura.
+              Acompañamos cada proyecto de punta a punta —diseño,
+              documentación, trámites y obra— y lo representamos con un alto
+              nivel de realismo antes de construirlo.
             </p>
           </Reveal>
 

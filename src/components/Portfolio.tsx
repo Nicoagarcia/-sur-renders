@@ -13,9 +13,9 @@ import { RenderFrame } from "./RenderFrame";
 import { ProjectModal } from "./ProjectModal";
 import { Reveal } from "./Reveal";
 
-// Dos proyectos que abren la sección como portada — una escena nocturna y una
-// diurna — en disposición asimétrica.
-const featuredSlugs = ["casa-villalonga", "casa-patagones"];
+// Dos proyectos que abren la sección como portada, en disposición asimétrica.
+// El primero va en grande.
+const featuredSlugs = ["edificio-las-heras", "casa-villalonga"];
 const featured = featuredSlugs
   .map((s) => projects.find((p) => p.slug === s))
   .filter(Boolean) as Project[];
@@ -183,7 +183,11 @@ export function Portfolio() {
         )}
       </div>
 
-      <ProjectModal project={active} onClose={() => setActive(null)} />
+      <ProjectModal
+        key={active?.slug}
+        project={active}
+        onClose={() => setActive(null)}
+      />
     </section>
   );
 }

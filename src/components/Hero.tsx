@@ -1,101 +1,119 @@
-import { RenderFrame } from "./RenderFrame";
-import { siteConfig, yearsActive } from "@/lib/site";
-import { projects, studioCount } from "@/lib/projects";
+"use client";
 
-const meta = [
-  { label: "Base", value: "Viedma, Río Negro" },
-  { label: "Trayectoria", value: `Desde ${siteConfig.since}` },
-  { label: "Proyectos", value: `${projects.length} publicados` },
-  { label: "Trabajamos con", value: `${studioCount} estudios` },
-];
+import { useEffect, useState } from "react";
+import { RenderFrame } from "./RenderFrame";
+
+/** Renders del carrusel de portada: /public/hero/01.jpg, 02.jpg, ... */
+const slides = [
+  "Fachada de vivienda con cochera",
+  "Fachada con portón rojo",
+  "Fachada de ladrillo visto",
+  "Vista axonométrica de vivienda",
+  "Estar comedor con cocina integrada",
+  "Estar comedor con bóveda de ladrillo",
+  "Cocina con isla",
+  "Dormitorio",
+].map((alt, i) => ({
+  src: `/hero/${String(i + 1).padStart(2, "0")}.jpg`,
+  alt,
+}));
+
+/** Cada cuánto pasa sola a la siguiente foto (ms). */
+const INTERVAL = 5000;
 
 export function Hero() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const go = (step: number) =>
+    setIndex((i) => (i + step + slides.length) % slides.length);
+
+  useEffect(() => {
+    if (paused) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setTimeout(
+      () => setIndex((i) => (i + 1) % slides.length),
+      INTERVAL,
+    );
+    return () => window.clearTimeout(id);
+  }, [index, paused]);
+
   return (
     <section
       id="inicio"
-      className="relative h-screen min-h-[680px] w-full overflow-hidden"
+      aria-roledescription="carrusel"
+      aria-label="Renders destacados"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      className="relative h-screen min-h-[560px] w-full overflow-hidden bg-ink"
     >
-      {/* Render destacado de fondo, con zoom lento de entrada */}
-      <div className="hero-zoom absolute inset-0">
-        <RenderFrame
-          src="/proyectos/arenas-verdes-ii/01.jpg"
-          alt="Arenas Verdes II — fachada al atardecer"
-          preload
-          quality={85}
-          sizes="100vw"
-          className="absolute inset-0 h-full w-full"
-        />
-      </div>
-      {/* Veladura cálida para legibilidad */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/45 via-ink/15 to-ink/70" />
-
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-12 lg:px-10 lg:pb-16">
-        <div className="max-w-4xl">
-          <p
-            className="anim-rise mb-6 flex items-center gap-3 text-[11px] uppercase tracking-widest-xl text-paper/80"
-            style={{ animationDelay: "0.05s" }}
-          >
-            <span className="h-px w-8 bg-paper/50" />
-            {siteConfig.tagline}
-          </p>
-          <h1
-            className="anim-rise font-display text-5xl font-light leading-[0.98] text-paper sm:text-6xl lg:text-7xl"
-            style={{ animationDelay: "0.18s" }}
-          >
-            Vemos el proyecto
-            <br />
-            <span className="text-paper/70">—</span>{" "}
-            <span className="italic">antes de construirlo.</span>
-          </h1>
-          <p
-            className="anim-rise mt-7 max-w-xl text-base leading-relaxed text-paper/85"
-            style={{ animationDelay: "0.36s" }}
-          >
-            Renders fotorrealistas y recorridos virtuales que comunican cada
-            espacio con precisión, calidez y un nivel de detalle excepcional.
-          </p>
-          <div
-            className="anim-rise mt-9 flex flex-wrap items-center gap-x-9 gap-y-4"
-            style={{ animationDelay: "0.52s" }}
-          >
-            <a
-              href="#portfolio"
-              className="group inline-flex items-center gap-3 text-sm tracking-wide text-paper"
-            >
-              <span className="border-b border-paper/40 pb-1 transition-colors duration-300 group-hover:border-paper">
-                Ver el índice de proyectos
-              </span>
-            </a>
-            <a
-              href="#contacto"
-              className="text-sm tracking-wide text-paper/70 transition-colors duration-300 hover:text-paper"
-            >
-              Solicitar presupuesto
-            </a>
-          </div>
-        </div>
-
-        {/* Ficha del estudio */}
-        <dl
-          className="anim-rise mt-12 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-paper/20 pt-7 sm:grid-cols-4"
-          style={{ animationDelay: "0.68s" }}
+      {slides.map((s, i) => (
+        <div
+          key={s.src}
+          aria-hidden={i !== index}
+          className={`absolute inset-0 transition-opacity duration-[1400ms] ease-[var(--ease-soft)] ${
+            i === index ? "opacity-100" : "opacity-0"
+          }`}
         >
-          {meta.map((m) => (
-            <div key={m.label}>
-              <dt className="text-[10px] uppercase tracking-widest-xl text-paper/55">
-                {m.label}
-              </dt>
-              <dd className="mt-1.5 font-display text-lg text-paper">
-                {m.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </div>
+          <RenderFrame
+            src={s.src}
+            alt={s.alt}
+            preload={i === 0}
+            quality={85}
+            sizes="100vw"
+            className={`absolute inset-0 h-full w-full ${
+              i === index ? "hero-zoom" : ""
+            }`}
+          />
+        </div>
+      ))}
+      {/* Veladura arriba (header) y abajo (controles) */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/40 via-transparent to-ink/45" />
 
-      {/* Indicador de scroll */}
-      <div className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 lg:block">
-        <span className="block h-12 w-px animate-pulse bg-paper/50" />
+      {/* Controles — por encima del botón flotante de WhatsApp hasta xl */}
+      <div className="absolute inset-x-0 bottom-0 z-10 mx-auto flex max-w-7xl items-center gap-6 px-6 pb-24 lg:px-10 xl:pb-10">
+        <span className="font-display text-lg tabular-nums text-paper">
+          {String(index + 1).padStart(2, "0")}
+          <span className="text-paper/50">
+            {" / "}
+            {String(slides.length).padStart(2, "0")}
+          </span>
+        </span>
+        <div className="flex flex-1 gap-1.5">
+          {slides.map((s, i) => (
+            <button
+              key={s.src}
+              onClick={() => setIndex(i)}
+              aria-label={`Ver render ${i + 1}`}
+              aria-current={i === index}
+              className="group h-6 flex-1 py-[11px]"
+            >
+              <span
+                className={`block h-px w-full transition-colors duration-500 ${
+                  i === index
+                    ? "bg-paper"
+                    : "bg-paper/30 group-hover:bg-paper/60"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={() => go(-1)}
+            aria-label="Render anterior"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-paper/40 text-paper transition-colors hover:bg-paper/15"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => go(1)}
+            aria-label="Render siguiente"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-paper/40 text-paper transition-colors hover:bg-paper/15"
+          >
+            →
+          </button>
+        </div>
       </div>
     </section>
   );

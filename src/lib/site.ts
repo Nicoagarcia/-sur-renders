@@ -3,13 +3,13 @@
  * Editá estos valores cuando tengas los datos definitivos del estudio.
  */
 export const siteConfig = {
-  name: "Sur Renders",
+  name: "JP Arquitectura",
   /** Año en que el estudio empezó a trabajar. */
   since: 2020,
-  tagline: "Visualización Arquitectónica 3D",
-  url: "https://sur-renders.vercel.app",
+  tagline: "Estudio de Arquitectura + Visualización 3D",
+  url: "https://jparquitectura.com.ar",
   description:
-    "Estudio de visualización arquitectónica 3D en Viedma, Río Negro. Renders fotorrealistas, recorridos virtuales y presentación profesional de proyectos antes de construir.",
+    "Estudio de arquitectura y visualización 3D en Viedma, Río Negro. Proyectos, dirección de obra, documentación técnica, renders fotorrealistas y recorridos virtuales.",
 
   // Contacto
   contact: {

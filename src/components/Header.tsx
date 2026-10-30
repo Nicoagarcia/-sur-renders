@@ -30,12 +30,12 @@ export function Header() {
           onClick={() => setOpen(false)}
         >
           {/* Logo: versión clara sobre el hero, oscura al scrollear */}
-          <span className="relative block h-8 w-9">
+          <span className="relative block h-10 w-11">
             <Image
               src="/logo/logo-claro.png"
-              alt=""
+              alt={siteConfig.name}
               fill
-              sizes="36px"
+              sizes="44px"
               className={`object-contain transition-opacity duration-500 ${
                 scrolled || open ? "opacity-0" : "opacity-100"
               }`}
@@ -44,18 +44,22 @@ export function Header() {
               src="/logo/logo-oscuro.png"
               alt=""
               fill
-              sizes="36px"
+              sizes="44px"
               className={`object-contain transition-opacity duration-500 ${
                 scrolled || open ? "opacity-100" : "opacity-0"
               }`}
             />
           </span>
+          {/* Bajada chica junto al monograma JP */}
           <span
-            className={`font-display text-2xl leading-none tracking-wide transition-colors duration-500 ${
-              scrolled || open ? "text-ink" : "text-paper"
+            className={`border-l pl-3 text-[9px] uppercase leading-[1.5] tracking-[0.2em] transition-colors duration-500 ${
+              scrolled || open
+                ? "border-line text-stone"
+                : "border-paper/30 text-paper/80"
             }`}
           >
-            {siteConfig.name}
+            Estudio de Arquitectura
+            <br />+ Visualización 3D
           </span>
         </a>
 

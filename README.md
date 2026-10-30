@@ -1,6 +1,6 @@
-# Sur Renders
+# JP Arquitectura
 
-Sitio web portfolio para un estudio de visualización arquitectónica 3D.
+Sitio web del estudio de arquitectura y visualización 3D del Arq. Jesús Pacheco Vásquez.
 Construido con **Next.js 16 (App Router)**, **React 19**, **TypeScript** y **Tailwind CSS v4**.
 
 Estética minimalista y cálida: tonos crema/beige, verdes desaturados (sage) y
@@ -27,7 +27,8 @@ src/
     globals.css       # design tokens (paleta, tipografía, animaciones)
   components/
     Header.tsx        # nav sticky (transparente sobre el hero, sólido al scrollear) + menú mobile
-    Hero.tsx          # render destacado + presentación + CTAs
+    Hero.tsx          # carrusel de renders de portada (public/hero/)
+    ImageViewer.tsx   # visor a pantalla completa con zoom ("Ingresar a la foto")
     About.tsx         # "El estudio": historia, filosofía, métricas
     Portfolio.tsx     # grilla + filtro por categoría
     ProjectModal.tsx  # galería del proyecto + recorrido virtual
@@ -69,8 +70,9 @@ ancho, JPG calidad ~82). Para agregar uno:
    una leyenda por imagen, y `{ alt, square: true }` si el render es 1:1.
 
 Los destacados de la sección Portfolio se eligen en `featuredSlugs`
-(`src/components/Portfolio.tsx`). El render del hero y el de "El estudio" se
-definen directamente en `Hero.tsx` y `About.tsx`.
+(`src/components/Portfolio.tsx`). Las fotos del carrusel de portada viven en
+`public/hero/` y se listan en `Hero.tsx`; el render de "El estudio" se define
+en `About.tsx`.
 
 ### 4. Logo e íconos
 `public/logo/logo-claro.png` (sobre fondos oscuros) y `logo-oscuro.png` (sobre

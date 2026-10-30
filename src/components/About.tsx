@@ -25,10 +25,10 @@ export function About() {
           </h2>
           <div className="mt-7 space-y-5 text-[15px] leading-relaxed text-stone">
             <p>
-              Somos un estudio dedicado exclusivamente a la visualización
-              arquitectónica 3D. Acompañamos a arquitectos, desarrolladores y
-              constructoras a comunicar sus proyectos con claridad mucho antes
-              de la obra.
+              Somos un estudio de arquitectura y visualización 3D. Proyectamos,
+              documentamos y dirigimos obras, y acompañamos a arquitectos,
+              desarrolladores y constructoras a comunicar sus proyectos con
+              claridad mucho antes de la obra.
             </p>
             <p>
               Trabajamos cada render como una fotografía: estudiamos la luz, los

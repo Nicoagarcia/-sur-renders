@@ -219,8 +219,8 @@ export const projects: Project[] = [
 
   // — Edificios —
   {
-    slug: "edificio-rio-centro",
-    title: "Edificio Río Centro",
+    slug: "edificio-las-heras",
+    title: "Edificio Las Heras",
     category: "edificios",
     kind: "Edificio residencial",
     location: "Viedma, Río Negro",
@@ -228,7 +228,7 @@ export const projects: Project[] = [
     architectInstagram: "luduenarodriguezrobles",
     description:
       "Edificio residencial en esquina con fachada de ladrillo visto y balcones. Vistas frontal y de ambos laterales, más una serie de interiores de las unidades.",
-    images: gallery("edificio-rio-centro", [
+    images: gallery("edificio-las-heras", [
       "Fachada",
       "Fachada lateral derecha",
       "Fachada lateral izquierda",
@@ -237,6 +237,7 @@ export const projects: Project[] = [
       "Interior de unidad, comedor",
       "Interior de unidad, estar",
     ]),
+    cover: 1,
   },
   {
     slug: "edificio-guimar",

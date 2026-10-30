@@ -14,9 +14,11 @@ export function Footer() {
               height={216}
               className="mb-4 h-12 w-auto"
             />
-            <p className="font-display text-3xl text-paper">{siteConfig.name}</p>
-            <p className="mt-2 max-w-xs text-sm text-paper/60">
-              {siteConfig.tagline}. {siteConfig.description}
+            <p className="text-[10px] uppercase tracking-[0.2em] text-paper/80">
+              {siteConfig.tagline}
+            </p>
+            <p className="mt-3 max-w-xs text-sm text-paper/60">
+              {siteConfig.description}
             </p>
           </div>
           <nav className="flex flex-wrap gap-x-8 gap-y-3">
